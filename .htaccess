@@ -1,0 +1,10 @@
+RewriteEngine on
+
+RewriteRule Controller/Login Controller/C_Login.php
+RewriteRule Controller/Cars Controller/C_Cars.php
+RewriteRule Controller/Clients Controller/C_Clients.php
+RewriteRule Controller/Dashbord Controller/C_Dashbord.php
+RewriteRule Controller/Reservations Controller/C_Reservations.php
+RewriteRule Controller/Espace_Utilisateur_Reservations Controller/C_M_UserReservation.php
+
+RewriteRule Controller/PDF/([0-9]+) Controller/C_PDF.php?id=$1 [NC,L]

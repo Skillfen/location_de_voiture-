@@ -30,7 +30,7 @@
             <form>
               <div class="form-floating mb-3">
                 <input value="<?= $login ?>" type="text" class="form-control" id="floatingInput" placeholder="Utilisateur" name="User" required>
-                <label for="floatingInput">User</label>
+                <label for="floatingInput">Username</label>
                 <span style="color:red"><?= $erreurlogin ?></span>
                 
               </div>

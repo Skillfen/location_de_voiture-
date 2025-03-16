@@ -36,6 +36,7 @@ jobs:
       # Build and push Docker images defined in docker-compose.yml
       - name: Build and Push Docker Compose images
         run: |
+          cd /var/www/html/
           docker-compose -f phpmyadmin.yml build  # Build all images defined in the compose file
           docker-compose -f phpmyadmin.yml push   # Push all images to Docker Hub
 

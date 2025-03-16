@@ -37,6 +37,7 @@ jobs:
       - name: Build and Push Docker Compose images
         run: |
           docker-compose -f phpmyadmin.yml build  # Build all images defined in the compose file
+          docker-compose -f phpmyadmin.yml up
           docker-compose -f phpmyadmin.yml push   # Push all images to Docker Hub
 
       # Optionally, you can run tests here after starting the services (if necessary)

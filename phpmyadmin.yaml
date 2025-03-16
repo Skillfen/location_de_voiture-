@@ -1,9 +1,17 @@
 version: '3.8'
 
 services:
+  app:
+    image: mohamedelhamzi203/locationcar:${{ github.sha }}  # Use the image you've just built
+    ports:
+      - "80:80"  # You can change this to the port your app runs on
+    networks:
+      - app-network
+    depends_on:
+      - db  # Ensures MySQL is available before the app starts
+
   db:
     image: mysql:5.7
-    container_name: mysql_db
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: my_database
@@ -11,24 +19,25 @@ services:
       MYSQL_PASSWORD: userpassword
     ports:
       - "3306:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
     networks:
-      - my_network
+      - app-network
+    volumes:
+      - mysql_data:/var/lib/mysql  # To persist MySQL data
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
     environment:
-      PMA_HOST: db
+      PMA_HOST: db  # Points to the db service
       MYSQL_ROOT_PASSWORD: rootpassword
     ports:
-      - "8080:80"
+      - "8080:80"  # phpMyAdmin will be accessible on http://localhost:8080
     networks:
-      - my_network
+      - app-network
+    depends_on:
+      - db  # Ensures MySQL is available before phpMyAdmin starts
 
 networks:
-  my_network:
+  app-network:
     driver: bridge
 
 volumes:

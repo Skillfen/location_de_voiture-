@@ -30,8 +30,8 @@ jobs:
        # download docker-compose
       - name: install docker-compose
         run: |
-          apt update
-          apt install docker-compose
+          sudo apt update
+          sudo apt install docker-compose
 
       # Build and push Docker images defined in docker-compose.yml
       - name: Build and Push Docker Compose images

@@ -4,7 +4,7 @@ services:
   app:
     build:
       context: .  # This tells Docker Compose to build the image from the Dockerfile in the current directory
-    image: mohamedelhamzi203/locationcar:${{ github.sha }}  # Tag the image
+    image: mohamedelhamzi203/locationcar  # Tag the image
     ports:
       - "80:80"  # Expose the app on port 80
     networks:

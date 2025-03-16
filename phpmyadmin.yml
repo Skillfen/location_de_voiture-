@@ -32,7 +32,7 @@ services:
       PMA_HOST: db  # Connect phpMyAdmin to the db service
       MYSQL_ROOT_PASSWORD: rootpassword
     ports:
-      - "8080:80"  # Expose phpMyAdmin on port 8080
+      - "8080:81"  # Expose phpMyAdmin on port 8080
     networks:
       - app-network
     depends_on:

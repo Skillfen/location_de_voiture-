@@ -2,13 +2,15 @@ version: '3.8'
 
 services:
   app:
-    image: mohamedelhamzi203/locationcar:38790033f93584c4a80df2ae89fcb0e66eadd322  # Use the image you've just built
+    build:
+      context: .  # This tells Docker Compose to build the image from the Dockerfile in the current directory
+    image: mohamedelhamzi203/locationcar:${{ github.sha }}  # Tag the image
     ports:
-      - "80:80"  # You can change this to the port your app runs on
+      - "80:80"  # Expose the app on port 80
     networks:
       - app-network
     depends_on:
-      - db  # Ensures MySQL is available before the app starts
+      - db  # Ensure the MySQL service is started before the app
 
   db:
     image: mysql:5.7
@@ -22,19 +24,19 @@ services:
     networks:
       - app-network
     volumes:
-      - mysql_data:/var/lib/mysql  # To persist MySQL data
+      - mysql_data:/var/lib/mysql  # Persist MySQL data
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     environment:
-      PMA_HOST: db  # Points to the db service
+      PMA_HOST: db  # Connect phpMyAdmin to the db service
       MYSQL_ROOT_PASSWORD: rootpassword
     ports:
-      - "8080:80"  # phpMyAdmin will be accessible on http://localhost:8080
+      - "8080:80"  # Expose phpMyAdmin on port 8080
     networks:
       - app-network
     depends_on:
-      - db  # Ensures MySQL is available before phpMyAdmin starts
+      - db  # Ensure MySQL is available before starting phpMyAdmin
 
 networks:
   app-network:

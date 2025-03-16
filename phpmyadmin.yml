@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    image: mohamedelhamzi203/locationcar:${{ github.sha }}  # Use the image you've just built
+    image: mohamedelhamzi203/locationcar:latest  # Use the image you've just built
     ports:
       - "80:80"  # You can change this to the port your app runs on
     networks:
